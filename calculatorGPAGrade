@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+
+namespace cgpaCalculator
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Program value = new Program();
+            int noSubjects;
+            Console.WriteLine("Enter total Num Subjects :");
+            noSubjects = Convert.ToInt32(Console.ReadLine());
+            List<string> sub=value.Subjectname(noSubjects);
+            List<int> numbers=value.subjectMarks(sub);
+            value.calculateGPA(sub, numbers);
+        }
+
+        public List<string> Subjectname (int noSubject)
+        {
+            List<string> subjectsName = new List<string>();
+            for(int i=1; i<=noSubject;i++)
+            {
+                Console.Write("Enter Subject Name:  ");
+                string subject= Console.ReadLine();
+                subjectsName.Add(subject);
+            }
+            return subjectsName;
+        }
+
+        public List<int> subjectMarks ( List<string> subjectsName)
+        {
+        int lenght=subjectsName.Count;
+            List<int> marks= new List<int>();
+            for(int i =0; i<lenght;i++)
+            {
+                Console.Write($"Enter Marks of {subjectsName[i]} :  ");
+                int mark= Convert.ToInt32(Console.ReadLine());
+                marks.Add(mark);
+            }
+            return marks;
+        }
+
+        public void calculateGPA (List<string> sub , List<int> numbers  )
+        {
+            Console.WriteLine($"Sr. Subject Name   Marks   Grade");
+            for(int i=0;i<numbers.Count;i++)
+            {
+                if (numbers[i]>84)
+                {
+                    Console.WriteLine($"{i+1}   {sub[i]}     {numbers[i]}     {numbers[i]}/100    A");
+                }
+                else if (numbers[i] >= 76   && numbers[i] <= 83)
+                {
+                    Console.WriteLine($"{i + 1}   {sub[i]}     {numbers[i]}     {numbers[i]}/100    B");
+                }
+                else if (numbers[i] >= 66 && numbers[i] <= 75)
+                {
+                    Console.WriteLine($"{i + 1}   {sub[i]}     {numbers[i]}     {numbers[i]}/100    C");
+                }
+                else if (numbers[i] >= 50 && numbers[i] <= 65)
+                {
+                    Console.WriteLine($"{i + 1}   {sub[i]}     {numbers[i]}     {numbers[i]}/100    D");
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1}   {sub[i]}     {numbers[i]}     {numbers[i]}/100    F");
+                }
+            }
+        }
+
+
+    }
+}
